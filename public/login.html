@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Area | Gymmy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gymmy: { dark: '#0B0F14', green: '#10B981', gold: '#F59E0B', slate: '#1E293B' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .calendar-day { min-height: 48px; }
+        .calendar-day.available:hover { background: #10B98133; }
+        .time-slot { transition: all 0.15s; }
+        .time-slot.selected { background: #10B981; color: black; }
+        .tab-btn.active { background: #10B981; color: #000; }
+    </style>
+</head>
+<body class="bg-gymmy-dark text-white">
+
+    <nav class="fixed w-full z-50 bg-gymmy-dark/95 backdrop-blur border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center gap-3">
+            <a href="index.html" class="text-xl font-bold"><span class="text-gymmy-green">Gym</span>my</a>
+            <div id="nav-user" class="hidden flex items-center gap-3">
+                <span id="nav-username" class="text-sm text-gray-400 hidden sm:inline"></span>
+                <button id="logout-btn" class="text-sm text-gray-400 border border-white/20 px-4 py-1.5 rounded-full hover:border-white/40">Log Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LOGIN -->
+    <section id="login-view" class="min-h-screen pt-24 px-4 flex items-center justify-center">
+        <div class="w-full max-w-md">
+            <h1 class="text-3xl font-bold text-center mb-2">Member Login</h1>
+            <p class="text-gray-400 text-center mb-8">Access your simulator bookings</p>
+            <form id="login-form" class="bg-gymmy-slate/50 border border-white/10 rounded-2xl p-6 space-y-4">
+                <input type="text" id="login-username" placeholder="Username" required autocomplete="username"
+                       class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password"
+                       class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                <p id="login-error" class="hidden text-sm text-red-400 text-center"></p>
+                <button type="submit" class="w-full bg-gymmy-green text-black font-bold py-3 rounded-xl">Sign In</button>
+                <p class="text-xs text-center text-gray-500">New accounts are created by an administrator.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- APP -->
+    <section id="dashboard-view" class="hidden pt-20 pb-16 px-4">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold" id="welcome-text">Welcome back</h1>
+                    <p class="text-gray-400 text-sm">Simulator Booking System</p>
+                </div>
+                <div class="bg-gymmy-slate/60 border border-gymmy-green/40 rounded-xl px-5 py-3 text-center">
+                    <p class="text-xs text-gray-400">Peak Hours Left This Month</p>
+                    <p class="text-2xl font-bold text-gymmy-green"><span id="hours-left">21</span> <span class="text-base text-gray-400">/ 21</span></p>
+                </div>
+            </div>
+
+            <!-- TABS -->
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button class="tab-btn active px-4 py-2 rounded-full border border-white/20 text-sm font-medium" data-tab="book">Book Simulator</button>
+                <button class="tab-btn px-4 py-2 rounded-full border border-white/20 text-sm font-medium" data-tab="profile">My Profile</button>
+                <button id="admin-tab-btn" class="tab-btn hidden px-4 py-2 rounded-full border border-gymmy-gold/50 text-sm font-medium text-gymmy-gold" data-tab="admin">Admin</button>
+            </div>
+
+            <!-- BOOK TAB -->
+            <div id="tab-book">
+                <div class="bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <button id="prev-month" class="text-2xl px-3 py-1 rounded-lg hover:bg-white/10">‹</button>
+                        <h2 id="month-title" class="text-xl font-bold"></h2>
+                        <button id="next-month" class="text-2xl px-3 py-1 rounded-lg hover:bg-white/10">›</button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs text-gray-400 mb-2">
+                        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                    </div>
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-1"></div>
+                    <p class="text-xs text-gray-500 mt-4">Days with existing bookings show a green dot.</p>
+                </div>
+
+                <div id="booking-panel" class="hidden space-y-6">
+                    <div class="bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8">
+                        <h3 class="text-xl font-bold mb-1">Already booked this day</h3>
+                        <p class="text-gray-400 mb-4" id="selected-date-text"></p>
+                        <div id="day-bookings" class="space-y-2"></div>
+                    </div>
+
+                    <div class="bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8">
+                        <h3 class="text-xl font-bold mb-6">Book Simulator</h3>
+
+                        <p class="text-sm font-medium mb-2">Duration</p>
+                        <div class="flex gap-3 mb-6">
+                            <button class="duration-btn flex-1 py-3 rounded-xl border border-white/20" data-hours="1">1 Hour</button>
+                            <button class="duration-btn flex-1 py-3 rounded-xl border border-white/20" data-hours="2">2 Hours</button>
+                            <button class="duration-btn flex-1 py-3 rounded-xl border border-white/20" data-hours="3">3 Hours</button>
+                        </div>
+
+                        <p class="text-sm font-medium mb-2">Start Time <span class="text-gray-500 font-normal">(taken slots are hidden)</span></p>
+                        <div id="time-slots" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"></div>
+
+                        <div id="bay-section" class="hidden">
+                            <p class="text-sm font-medium mb-2">Select Bay <span class="text-gray-500 font-normal">(only open bays shown)</span></p>
+                            <div id="bay-buttons" class="grid grid-cols-5 gap-2 mb-8"></div>
+                        </div>
+
+                        <button id="confirm-booking" class="w-full bg-gymmy-green text-black font-bold py-4 rounded-xl text-lg disabled:opacity-40" disabled>
+                            Confirm Booking
+                        </button>
+                        <div id="booking-message" class="hidden mt-4 p-4 rounded-xl text-center font-medium"></div>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <h3 class="text-xl font-bold mb-4">Your Upcoming Bookings</h3>
+                    <div id="bookings-list" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- PROFILE TAB -->
+            <div id="tab-profile" class="hidden">
+                <div class="bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8 max-w-xl">
+                    <h3 class="text-xl font-bold mb-1">Your Profile</h3>
+                    <p class="text-gray-400 text-sm mb-6">Update the contact details on your account.</p>
+                    <form id="profile-form" class="space-y-4">
+                        <div>
+                            <label class="text-sm text-gray-400 block mb-1">Username</label>
+                            <input id="profile-username" type="text" disabled
+                                   class="w-full bg-gymmy-dark/60 border border-white/10 rounded-xl px-4 py-3 text-gray-400">
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-400 block mb-1">Email</label>
+                            <input id="profile-email" type="email" placeholder="you@email.com"
+                                   class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-400 block mb-1">Phone number</label>
+                            <input id="profile-phone" type="tel" placeholder="(555) 555-5555"
+                                   class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-400 block mb-1">Address</label>
+                            <textarea id="profile-address" rows="3" placeholder="Street, city, state, ZIP"
+                                      class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green resize-none"></textarea>
+                        </div>
+                        <p id="profile-message" class="hidden text-sm"></p>
+                        <button type="submit" class="w-full bg-gymmy-green text-black font-bold py-3 rounded-xl">Save Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ADMIN TAB -->
+            <div id="tab-admin" class="hidden">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gymmy-slate/40 border border-gymmy-gold/30 rounded-2xl p-5 md:p-8">
+                        <h3 class="text-xl font-bold mb-1">Create New Account</h3>
+                        <p class="text-gray-400 text-sm mb-6">Only Admin can add members.</p>
+                        <form id="create-account-form" class="space-y-4">
+                            <input id="new-username" type="text" required placeholder="Username"
+                                   class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                            <input id="new-password" type="text" required placeholder="Password"
+                                   class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                            <input id="new-email" type="email" placeholder="Email (optional)"
+                                   class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                            <input id="new-phone" type="tel" placeholder="Phone (optional)"
+                                   class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green">
+                            <textarea id="new-address" rows="2" placeholder="Address (optional)"
+                                      class="w-full bg-gymmy-dark border border-white/20 rounded-xl px-4 py-3 focus:outline-none focus:border-gymmy-green resize-none"></textarea>
+                            <p id="create-message" class="hidden text-sm"></p>
+                            <button type="submit" class="w-full bg-gymmy-gold text-black font-bold py-3 rounded-xl">Create Account</button>
+                        </form>
+                    </div>
+                    <div class="bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8">
+                        <h3 class="text-xl font-bold mb-4">All Accounts</h3>
+                        <div id="accounts-list" class="space-y-2"></div>
+                    </div>
+                </div>
+                <div class="mt-6 bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8">
+                    <h3 class="text-xl font-bold mb-4">All Bookings</h3>
+                    <div id="admin-bookings-list" class="space-y-2"></div>
+                </div>
+                <div class="mt-6 bg-gymmy-slate/40 border border-white/10 rounded-2xl p-5 md:p-8">
+                    <h3 class="text-xl font-bold mb-4">Contact Messages</h3>
+                    <div id="admin-messages-list" class="space-y-2"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<script src="member.js"></script>
+
+</body>
+</html>
