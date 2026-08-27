@@ -1,0 +1,16 @@
+{
+  "name": "gymmy-site",
+  "version": "1.0.0",
+  "description": "Gymmy website + member booking backend",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
