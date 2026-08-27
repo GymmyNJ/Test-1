@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="gymmy-logo.jpg">
+    <title>Gymmy | Private Gym + Member-Only Golf Simulators</title>
+    <meta name="description" content="Gymmy combines 24/7 gym access with private golf simulator bays. One $400/month membership. 21 peak simulator hours plus unlimited off-peak.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { gymmy: { dark: '#0B0F14', green: '#10B981', gold: '#F59E0B', slate: '#1E293B' } },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gymmy-dark text-white font-sans antialiased">
+
+    <nav class="fixed w-full z-50 bg-gymmy-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center"><img src="gymmy-logo.jpg" alt="Gymmy" class="h-10 md:h-12 w-auto"></a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="index.html" class="text-gymmy-green">Home</a>
+                <a href="about.html" class="hover:text-gymmy-green transition">About</a>
+                <a href="membership.html" class="hover:text-gymmy-green transition">Membership</a>
+                <a href="simulators.html" class="hover:text-gymmy-green transition">Simulators</a>
+                <a href="contact.html" class="hover:text-gymmy-green transition">Contact</a>
+                <a href="login.html" class="bg-gymmy-green hover:bg-emerald-600 text-black px-5 py-2 rounded-full font-semibold transition">Member Login</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gymmy-dark border-t border-white/10 px-6 py-4 space-y-4">
+            <a href="index.html" class="block text-gymmy-green">Home</a>
+            <a href="about.html" class="block">About</a>
+            <a href="membership.html" class="block">Membership</a>
+            <a href="simulators.html" class="block">Simulators</a>
+            <a href="contact.html" class="block">Contact</a>
+            <a href="login.html" class="block text-gymmy-green font-semibold">Member Login</a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gymmy-dark via-slate-900 to-black"></div>
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center"></div>
+        <div class="relative max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center py-16">
+            <div class="space-y-8">
+                <div class="inline-block bg-gymmy-green/20 text-gymmy-green text-sm font-semibold px-4 py-1.5 rounded-full">24/7 gym · Members-only simulators</div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">Train hard.<br><span class="text-gymmy-green">Swing better.</span></h1>
+                <p class="text-xl text-gray-300 max-w-lg">A private performance club: full gym plus five reserved golf simulator bays. One membership. No public play. No walk-ins.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="membership.html" class="bg-gymmy-green hover:bg-emerald-500 text-black font-bold px-8 py-4 rounded-full text-center transition">View Membership — $400/mo</a>
+                    <a href="contact.html" class="border border-white/30 hover:border-gymmy-green text-white font-medium px-8 py-4 rounded-full text-center transition">Request a tour</a>
+                </div>
+                <div class="flex flex-wrap gap-6 text-sm text-gray-400 pt-2">
+                    <span>21 peak sim hours / month</span>
+                    <span>Unlimited off-peak</span>
+                    <span>Limited membership</span>
+                </div>
+            </div>
+            <div class="relative hidden md:block">
+                <img src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=800&q=80" alt="Golf simulator bay" class="rounded-3xl shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="reveal"><p class="text-3xl font-extrabold text-gymmy-green">$400</p><p class="text-gray-400 text-sm mt-1">per month, all-in</p></div>
+            <div class="reveal"><p class="text-3xl font-extrabold text-gymmy-green">5</p><p class="text-gray-400 text-sm mt-1">private simulator bays</p></div>
+            <div class="reveal"><p class="text-3xl font-extrabold text-gymmy-green">21</p><p class="text-gray-400 text-sm mt-1">peak hours every month</p></div>
+            <div class="reveal"><p class="text-3xl font-extrabold text-gymmy-green">24/7</p><p class="text-gray-400 text-sm mt-1">gym access</p></div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gymmy-slate/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Gymmy exists</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Built for people who refuse to choose between their body and their golf game.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal bg-gymmy-dark p-8 rounded-2xl border border-white/10 hover:border-gymmy-green/50 transition">
+                    <h3 class="text-xl font-bold mb-3">Full gym access</h3>
+                    <p class="text-gray-400">24/7 strength and conditioning. Train before or after you hit balls — same building, same membership.</p>
+                </div>
+                <div class="reveal bg-gymmy-dark p-8 rounded-2xl border border-white/10 hover:border-gymmy-green/50 transition">
+                    <h3 class="text-xl font-bold mb-3">Private simulator bays</h3>
+                    <p class="text-gray-400">Five member-only bays. No entertainment center crowds. Book from your phone in under a minute.</p>
+                </div>
+                <div class="reveal bg-gymmy-dark p-8 rounded-2xl border border-white/10 hover:border-gymmy-green/50 transition">
+                    <h3 class="text-xl font-bold mb-3">Smart hour system</h3>
+                    <p class="text-gray-400">7 AM–7 PM is peak and counts toward 21 hours. Early mornings and late nights never touch your allocation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-14 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How membership works</h2>
+                <p class="text-gray-400">From first inquiry to your first booked bay.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="reveal border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green font-bold mb-2">01</p>
+                    <h3 class="font-bold mb-2">Request a spot</h3>
+                    <p class="text-gray-400 text-sm">Use the contact form. We keep membership limited so bays stay open.</p>
+                </div>
+                <div class="reveal border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green font-bold mb-2">02</p>
+                    <h3 class="font-bold mb-2">We create your login</h3>
+                    <p class="text-gray-400 text-sm">Admin issues your username and password. There is no public signup.</p>
+                </div>
+                <div class="reveal border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green font-bold mb-2">03</p>
+                    <h3 class="font-bold mb-2">Book a bay</h3>
+                    <p class="text-gray-400 text-sm">Pick date, duration, and an open bay. Taken slots disappear from the board.</p>
+                </div>
+                <div class="reveal border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green font-bold mb-2">04</p>
+                    <h3 class="font-bold mb-2">Train and play</h3>
+                    <p class="text-gray-400 text-sm">Lift, then hit. Peak hours count. Off-peak is unlimited.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gymmy-slate/40">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-4">Peak vs off-peak, simply</h2>
+                <p class="text-gray-400 mb-6">You always have gym access. Simulator time is split so prime evening hours stay fair.</p>
+                <ul class="space-y-3 text-gray-300">
+                    <li><span class="text-gymmy-gold font-semibold">Peak</span> — 7:00 AM to 7:00 PM. Counts toward your 21 hours.</li>
+                    <li><span class="text-gymmy-green font-semibold">Off-peak</span> — before 7 AM and after 7 PM. Unlimited.</li>
+                    <li>Book 1, 2, or 3 hours at a time across 5 bays.</li>
+                </ul>
+                <a href="simulators.html" class="inline-block mt-6 text-gymmy-green font-semibold">See simulator rules →</a>
+            </div>
+            <div class="reveal bg-gymmy-dark border border-white/10 rounded-2xl p-8">
+                <p class="text-sm text-gray-400 mb-4">Example month</p>
+                <div class="flex justify-between py-3 border-b border-white/10"><span>8 evening sessions × 2 hours</span><span class="text-gymmy-gold">16 peak hrs</span></div>
+                <div class="flex justify-between py-3 border-b border-white/10"><span>Morning range sessions</span><span class="text-gymmy-green">0 peak hrs</span></div>
+                <div class="flex justify-between py-3"><span>Hours still available</span><span class="font-bold">5 peak hrs</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-6 text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">One price. Everything included.</h2>
+            <p class="text-xl text-gray-300 mb-10">$400/month · No hidden fees · Limited roster so bays stay available</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="membership.html" class="bg-gymmy-green hover:bg-emerald-500 text-black font-bold text-lg px-10 py-5 rounded-full transition">See full membership</a>
+                <a href="contact.html" class="border border-white/20 hover:border-gymmy-green font-medium px-10 py-5 rounded-full transition">Ask about a tour</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 items-start">
+            <div>
+                <a href="index.html" class="inline-block mb-2"><img src="gymmy-logo.jpg" alt="Gymmy" class="h-12 w-auto"></a>
+                <p class="text-gray-500 text-sm">Private gym + member-only golf simulators.</p>
+            </div>
+            <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-gray-400">
+                <a href="about.html" class="hover:text-white">About</a>
+                <a href="membership.html" class="hover:text-white">Membership</a>
+                <a href="simulators.html" class="hover:text-white">Simulators</a>
+                <a href="contact.html" class="hover:text-white">Contact</a>
+                <a href="login.html" class="hover:text-white">Member Login</a>
+            </div>
+            <p class="text-gray-500 text-sm md:text-right">© 2026 Gymmy. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
