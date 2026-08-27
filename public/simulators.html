@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="gymmy-logo.png">
+    <title>Simulators | Gymmy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gymmy: { dark: '#0B0F14', green: '#10B981', gold: '#F59E0B', slate: '#1E293B' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gymmy-dark text-white font-sans antialiased">
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 bg-gymmy-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="gymmy-logo.png" alt="Gymmy" class="h-10 md:h-12 w-auto">
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="index.html" class="hover:text-gymmy-green transition">Home</a>
+                <a href="about.html" class="hover:text-gymmy-green transition">About</a>
+                <a href="membership.html" class="hover:text-gymmy-green transition">Membership</a>
+                <a href="simulators.html" class="text-gymmy-green">Simulators</a>
+                <a href="contact.html" class="hover:text-gymmy-green transition">Contact</a>
+                <a href="login.html" class="bg-gymmy-green hover:bg-emerald-600 text-black px-5 py-2 rounded-full font-semibold transition">Member Login</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gymmy-dark border-t border-white/10 px-6 py-4 space-y-4">
+            <a href="index.html" class="block">Home</a>
+            <a href="about.html" class="block">About</a>
+            <a href="membership.html" class="block">Membership</a>
+            <a href="simulators.html" class="block text-gymmy-green">Simulators</a>
+            <a href="contact.html" class="block">Contact</a>
+            <a href="login.html" class="block text-gymmy-green font-semibold">Member Login</a>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Member-Only Simulator Bays</h1>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Premium golf simulators reserved exclusively for Gymmy members. No public play. Ever.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=900&q=80" 
+                         alt="Golf Simulator Bay" class="rounded-2xl shadow-2xl">
+                </div>
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold">How Simulator Access Works</h2>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex gap-3">
+                            <span class="text-gymmy-green font-bold">01</span>
+                            <span><strong class="text-white">21 Peak Hours / Month</strong> — Prime time slots that count against your allocation</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-gymmy-green font-bold">02</span>
+                            <span><strong class="text-white">Unlimited Off-Peak</strong> — Early mornings, late nights, and slower periods never touch your hours</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-gymmy-green font-bold">03</span>
+                            <span><strong class="text-white">Easy Booking</strong> — Reserve your bay in seconds from your member dashboard</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-gymmy-green font-bold">04</span>
+                            <span><strong class="text-white">Controlled Membership</strong> — We keep numbers low so availability stays high</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green text-sm font-semibold mb-2">Peak</p>
+                    <p class="font-bold text-lg mb-1">7:00 AM – 7:00 PM</p>
+                    <p class="text-gray-400 text-sm">Counts toward your 21 monthly hours.</p>
+                </div>
+                <div class="border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green text-sm font-semibold mb-2">Off-peak</p>
+                    <p class="font-bold text-lg mb-1">Before 7 AM & after 7 PM</p>
+                    <p class="text-gray-400 text-sm">Unlimited. Never touches peak allocation.</p>
+                </div>
+                <div class="border border-white/10 rounded-2xl p-6">
+                    <p class="text-gymmy-green text-sm font-semibold mb-2">Bays</p>
+                    <p class="font-bold text-lg mb-1">5 private bays</p>
+                    <p class="text-gray-400 text-sm">Booked slots vanish from the calendar for everyone.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="membership.html" class="inline-block bg-gymmy-green hover:bg-emerald-500 text-black font-bold px-10 py-4 rounded-full transition">
+                    Get Full Access — $400/mo
+                </a>
+                <p class="text-gray-500 text-sm mt-4"><a href="login.html" class="hover:text-gymmy-green">Members: book a bay</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="index.html"><img src="gymmy-logo.png" alt="Gymmy" class="h-10 w-auto"></a>
+            <div class="flex space-x-8 text-sm text-gray-400">
+                <a href="about.html" class="hover:text-white">About</a>
+                <a href="membership.html" class="hover:text-white">Membership</a>
+                <a href="simulators.html" class="hover:text-white">Simulators</a>
+                <a href="contact.html" class="hover:text-white">Contact</a>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 Gymmy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

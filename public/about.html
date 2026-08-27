@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="gymmy-logo.png">
+    <title>About Us | Gymmy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gymmy: { dark: '#0B0F14', green: '#10B981', gold: '#F59E0B', slate: '#1E293B' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gymmy-dark text-white font-sans antialiased">
+
+    <!-- Same Nav as index (copy the nav section) -->
+    <nav class="fixed w-full z-50 bg-gymmy-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="gymmy-logo.png" alt="Gymmy" class="h-10 md:h-12 w-auto">
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="index.html" class="hover:text-gymmy-green transition">Home</a>
+                <a href="about.html" class="text-gymmy-green">About</a>
+                <a href="membership.html" class="hover:text-gymmy-green transition">Membership</a>
+                <a href="simulators.html" class="hover:text-gymmy-green transition">Simulators</a>
+                <a href="contact.html" class="hover:text-gymmy-green transition">Contact</a>
+                <a href="login.html" class="bg-gymmy-green hover:bg-emerald-600 text-black px-5 py-2 rounded-full font-semibold transition">Member Login</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gymmy-dark border-t border-white/10 px-6 py-4 space-y-4">
+            <a href="index.html" class="block">Home</a>
+            <a href="about.html" class="block text-gymmy-green">About</a>
+            <a href="membership.html" class="block">Membership</a>
+            <a href="simulators.html" class="block">Simulators</a>
+            <a href="contact.html" class="block">Contact</a>
+            <a href="login.html" class="block text-gymmy-green font-semibold">Member Login</a>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold mb-8">Built for the Complete Athlete</h1>
+            
+            <div class="prose prose-invert prose-lg max-w-none space-y-6 text-gray-300">
+                <p class="text-xl leading-relaxed">
+                    Gymmy was created for one type of person: the individual who takes both their golf game and their physical well-being seriously.
+                </p>
+                
+                <p>
+                    We saw a gap. Golfers were paying high fees for simulator time at facilities that offered nothing for strength and conditioning. Gym-goers who loved golf had nowhere to practice their swing after a serious workout. We fixed that.
+                </p>
+
+                <p>
+                    Gymmy is a fully functioning gym with <strong class="text-white">member-only simulator bays</strong>. There are no public booking slots. No walk-ins. Only our members.
+                </p>
+
+                <div class="bg-gymmy-slate/60 border border-gymmy-green/30 rounded-2xl p-8 my-10">
+                    <h3 class="text-2xl font-bold text-gymmy-green mb-4">Why We Limit Membership</h3>
+                    <p>
+                        We intentionally keep our membership numbers controlled. This ensures the simulator bays remain easily available with very minimal restrictions. You’ll rarely (if ever) face a fully booked board. When you want to hit balls, the bay is waiting.
+                    </p>
+                </div>
+
+                <p>
+                    This is not a crowded commercial gym. This is not a public golf entertainment center.  
+                    This is a private performance club for people who demand both strength and precision.
+                </p>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="membership.html" class="inline-block bg-gymmy-green hover:bg-emerald-500 text-black font-bold px-10 py-4 rounded-full transition">
+                    See Membership Details
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index) -->
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="index.html"><img src="gymmy-logo.png" alt="Gymmy" class="h-10 w-auto"></a>
+            <div class="flex space-x-8 text-sm text-gray-400">
+                <a href="about.html" class="hover:text-white">About</a>
+                <a href="membership.html" class="hover:text-white">Membership</a>
+                <a href="simulators.html" class="hover:text-white">Simulators</a>
+                <a href="contact.html" class="hover:text-white">Contact</a>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 Gymmy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
